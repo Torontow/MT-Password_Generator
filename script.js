@@ -7,12 +7,12 @@ generateBtn.addEventListener("click", writePassword);
 
 //  The user will choose some or all of these types of characters for their password.
 var numString = ["0123456789"];
-var alphaString = ["abcdefghijklmnopqrstuvqxyz"];
+var lAlphaString = ["abcdefghijklmnopqrstuvqxyz"];
+var uAlphaString = ["ABCDEFGHIJKLMNOPQRSTUVQXYZ"]
 var specCharString = ["!#$%&()*+,-./:;<=>?@[^_`|~"];
 
 //  The function will choose _pLength_ characters at random from pCharString,
 // then push them to passwordText.
-var passwordText = []; 
 
 function writePassword() {
   var password = generatePassword();
@@ -26,21 +26,40 @@ function generatePassword() {
 
   // PARAMETERS FOR PASSWORD
 
-  // sets the length of the password (determined by user input)
+  // Sets the length of the password (determined by user input)
+  var passwordText = [];
   var pLength = prompt("Choose a number of characters (between 8 and 128).");
-  var pCharString = ("lkjsndlfjonwenklsfjld");
-//  Decides which types of characters will make up the password and assigns a boolean  
+
+  // User chooses which types of characters will make up the password and assigns a boolean  
   var num = confirm("Numbers?");
   var lCase = confirm("Lowercase letters?");
   var uCase = confirm("Uppercase?");
   var specChar = confirm("Special Characters?");
+  var pCharString = [];
+  // Adds whichever strings of characters users desire in their password
+  // and pushes them to a storage place
+  if (num) {
+    pCharString.push(numString);
+  }
+  if (lCase) {
+    pCharString.push(lAlphaString);
+  }
+  if (uCase) {
+    pCharString.push(uAlphaString);
+  }
+  if (specChar) {
+    pCharString.push(specCharString);
+  }
 
-
+  var pChars = pCharString.join("");
+  console.log(pChars.length);
+  
 // This finds a random character from the string of chosen password characters
 // and adds it to the password text array.
 for (var i=0; i<pLength; i++) {
-  passwordText.push(pCharString[Math.floor(Math.random()*pCharString.length)]);
+  passwordText.push(pChars[Math.floor(Math.random()*pChars.length)]);
 }
+console.log(passwordText.join(""));
 
 
 }
