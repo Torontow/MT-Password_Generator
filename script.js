@@ -11,9 +11,6 @@ var lAlphaString = ["abcdefghijklmnopqrstuvqxyz"];
 var uAlphaString = ["ABCDEFGHIJKLMNOPQRSTUVQXYZ"]
 var specCharString = ["!#$%&()*+,-./:;<=>?@[^_`|~"];
 
-//  The function will choose _pLength_ characters at random from pCharString,
-// then push them to passwordText.
-
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
@@ -24,43 +21,44 @@ function writePassword() {
 
 function generatePassword() {
 
+  var passwordTextArray = [];
+  
   // PARAMETERS FOR PASSWORD
 
   // Sets the length of the password (determined by user input)
-  var passwordText = [];
-  var pLength = prompt("Choose a number of characters (between 8 and 128).");
+  var pLength = prompt("Enter desired number of characters for password between 8 and 128.");
+    
 
-  // User chooses which types of characters will make up the password and assigns a boolean  
-  var num = confirm("Numbers?");
-  var lCase = confirm("Lowercase letters?");
-  var uCase = confirm("Uppercase?");
-  var specChar = confirm("Special Characters?");
-  var pCharString = [];
-  // Adds whichever strings of characters users desire in their password
-  // and pushes them to a storage place
-  if (num) {
-    pCharString.push(numString);
-  }
-  if (lCase) {
-    pCharString.push(lAlphaString);
-  }
-  if (uCase) {
-    pCharString.push(uAlphaString);
-  }
-  if (specChar) {
-    pCharString.push(specCharString);
-  }
-
-  var pChars = pCharString.join("");
-  console.log(pChars.length);
+      // User chooses which types of characters will make up the password and assigns a boolean  
+      var num = confirm("Numbers?");
+      var lCase = confirm("Lowercase letters?");
+      var uCase = confirm("Uppercase?");
+      var specChar = confirm("Special Characters?");
+      var pCharString = [];
+      // Adds whichever strings of characters users desire in their password
+      // and pushes them to a storage place
+      if (num) {
+        pCharString.push(numString);
+      }
+      if (lCase) {
+        pCharString.push(lAlphaString);
+      }
+      if (uCase) {
+        pCharString.push(uAlphaString);
+      }
+      if (specChar) {
+        pCharString.push(specCharString);
+      }
+    
+    var pChars = pCharString.join("");
   
 // This finds a random character from the string of chosen password characters
 // and adds it to the password text array.
 for (var i=0; i<pLength; i++) {
-  passwordText.push(pChars[Math.floor(Math.random()*pChars.length)]);
+  passwordTextArray.push(pChars[Math.floor(Math.random()*pChars.length)]);
 }
-console.log(passwordText.join(""));
 
+return (passwordTextArray.join(""));
 
 }
 
