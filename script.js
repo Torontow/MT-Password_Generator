@@ -21,39 +21,45 @@ function writePassword() {
 
 function generatePassword() {
   
-  // Sets the length of the password (determined by user input)
-  var pLength = prompt("Enter desired number of characters for password between 8 and 128.");
+  // Restricts users to choosing a password between 8 and 128 characters.
+  var pLength = 0;
+  while (pLength < 8 || pLength > 128) {
+    pLength = prompt("Enter desired number of characters for password between 8 and 128.");
+    }
 
       // User chooses which types of characters will make up the password and assigns a boolean  
-      var num = confirm("Numbers?");
-      var lCase = confirm("Lowercase letters?");
-      var uCase = confirm("Uppercase?");
-      var specChar = confirm("Special Characters?");
+      var num = confirm("Click OK to include integers.");
+      var lCase = confirm("Click OK to include lowercase letters.");
+      var uCase = confirm("Click OK to include uppercase letters.");
+      var specChar = confirm("Click OK to include special characters.");
 
       // Defines array of types of characters the user wants for their password.
       var pCharString = [];
 
       // Adds whichever types of characters users confirm for their password
       // and pushes them to a storage place
-        
-      switch (true) {
-        case num:
-          pCharString.push(numString);
-        case lCase:
-          pCharString.push(lAlphaString);
-        case uCase:
-          pCharString.push(uAlphaString);
-        case specChar:
-          pCharString.push(specCharString);
-        break;
-        default:
-          alert("Must choose some characters for the password.")        
-      }   
-
+      if (num) {
+        pCharString.push(numString);
+      }
+      if (lCase) {
+        pCharString.push(lAlphaString);
+      }
+      if (uCase) {
+        pCharString.push(uAlphaString);
+      }
+      if (specChar) {
+        pCharString.push(specCharString);
+      } 
+      
+      // Validates that user chose at least one type of character to use.
+      switch (pCharString.length) {
+        case 0:
+          alert("Error: No valid characters included.")
+      }       
+      
       // Combines all the character types chosen and creates a single string
       // which will be drawn from to create the password
       var pChars = pCharString.join("");
-
       // Creates an empty array to store final password text characters
       var passwordTextArray = [];
 
@@ -64,6 +70,7 @@ function generatePassword() {
       }
       // Returns the final array as a single string to the document
       return (passwordTextArray.join(""));
+    
 }
 
 
