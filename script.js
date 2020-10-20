@@ -20,46 +20,50 @@ function writePassword() {
 }
 
 function generatePassword() {
-
-  var passwordTextArray = [];
   
-  // PARAMETERS FOR PASSWORD
-
   // Sets the length of the password (determined by user input)
   var pLength = prompt("Enter desired number of characters for password between 8 and 128.");
-    
 
       // User chooses which types of characters will make up the password and assigns a boolean  
       var num = confirm("Numbers?");
       var lCase = confirm("Lowercase letters?");
       var uCase = confirm("Uppercase?");
       var specChar = confirm("Special Characters?");
+
+      // Defines array of types of characters the user wants for their password.
       var pCharString = [];
-      // Adds whichever strings of characters users desire in their password
+
+      // Adds whichever types of characters users confirm for their password
       // and pushes them to a storage place
-      if (num) {
-        pCharString.push(numString);
-      }
-      if (lCase) {
-        pCharString.push(lAlphaString);
-      }
-      if (uCase) {
-        pCharString.push(uAlphaString);
-      }
-      if (specChar) {
-        pCharString.push(specCharString);
-      }
-    
-    var pChars = pCharString.join("");
-  
-// This finds a random character from the string of chosen password characters
-// and adds it to the password text array.
-for (var i=0; i<pLength; i++) {
-  passwordTextArray.push(pChars[Math.floor(Math.random()*pChars.length)]);
-}
+        
+      switch (true) {
+        case num:
+          pCharString.push(numString);
+        case lCase:
+          pCharString.push(lAlphaString);
+        case uCase:
+          pCharString.push(uAlphaString);
+        case specChar:
+          pCharString.push(specCharString);
+        break;
+        default:
+          alert("Must choose some characters for the password.")        
+      }   
 
-return (passwordTextArray.join(""));
+      // Combines all the character types chosen and creates a single string
+      // which will be drawn from to create the password
+      var pChars = pCharString.join("");
 
+      // Creates an empty array to store final password text characters
+      var passwordTextArray = [];
+
+      // Chooses characters at random from the string of character types 
+      // and adds them to the final password text array.
+      for (var i=0; i<pLength; i++) {
+        passwordTextArray.push(pChars[Math.floor(Math.random()*pChars.length)]);
+      }
+      // Returns the final array as a single string to the document
+      return (passwordTextArray.join(""));
 }
 
 
