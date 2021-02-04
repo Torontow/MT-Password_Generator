@@ -1,6 +1,6 @@
 # Password Generator
 
-![Final Product] "https://torontow.github.io/MT-Password_Generator/"
+[Final Product] "https://torontow.github.io/MT-Password_Generator/"
 
 ![Screenshot](screenshot.png)
 
